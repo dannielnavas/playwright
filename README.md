@@ -44,13 +44,41 @@ npx playwright show-report
 
 Abre el reporte HTML con los resultados de las pruebas ejecutadas.
 
-## Modo debug
+## Modo Debug
+
+Playwright ofrece potentes herramientas de depuración que te ayudarán a identificar y resolver problemas en tus pruebas.
+
+### Iniciar Modo Debug
 
 ```bash
 npx playwright test assert --debug
 ```
 
-Abre el test en modo debug
+Este comando inicia el modo debug para el archivo de prueba 'assert'. El navegador se abrirá y la ejecución se pausará al inicio de la prueba.
+
+### Debug con Console
+
+```bash
+PWDEBUG=console npx playwright test assert
+```
+
+Este comando habilita el modo debug con acceso a la consola de desarrollo, permitiendo una interacción más detallada con la página.
+
+### Comandos Útiles en la Consola de Debug
+
+En el modo debug, tienes acceso al objeto `playwright` en la consola del navegador con las siguientes funciones útiles:
+
+- `playwright.$('selector')` - Encuentra y retorna el primer elemento que coincida con el selector (similar a document.querySelector)
+- `playwright.$$('selector')` - Encuentra y retorna todos los elementos que coincidan con el selector (similar a document.querySelectorAll)
+- `playwright.inspect('selector')` - Activa el inspector de elementos y resalta el elemento seleccionado
+- `playwright.selector($0)` - Genera un selector óptimo para el elemento actualmente seleccionado en el inspector
+
+### Tips para el Modo Debug
+
+- Usa `await` con los comandos de playwright en la consola (ej: `await playwright.$('input')`)
+- Puedes alternar entre el modo paso a paso y la ejecución continua
+- El inspector de elementos te permite identificar selectores óptimos para tus pruebas
+- Presiona 'Resume' (F8) para continuar la ejecución después de un punto de interrupción
 
 ## Estructura del Proyecto
 
