@@ -44,6 +44,14 @@ npx playwright show-report
 
 Abre el reporte HTML con los resultados de las pruebas ejecutadas.
 
+## Modo debug
+
+```bash
+npx playwright test assert --debug
+```
+
+Abre el test en modo debug
+
 ## Estructura del Proyecto
 
 - `tests/` - Directorio que contiene las pruebas principales
