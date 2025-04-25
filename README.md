@@ -39,6 +39,7 @@ Este comando abre un navegador instrumentado que:
 | `npx playwright test --headed` | Ejecuta pruebas con navegador visible |
 | `npx playwright test [archivo]` | Ejecuta un archivo específico |
 | `npx playwright test --project=chromium` | Ejecuta pruebas solo en Chromium |
+| `npx playwright test assert --trace on` | Ejecuta pruebas con trazabilidad habilitada |
 
 ### Reportes y Resultados
 
