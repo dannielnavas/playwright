@@ -1,5 +1,14 @@
 import { expect, test } from "@playwright/test";
 
+// esto se ejecuta antes de cada test
+test.beforeEach(async ({ page }) => {
+  await page.goto("http://uitestingplayground.com/");
+  // se puede usar await page.goto("/"); siempre y cuando la url base este configurada
+  // en el playwright.config.ts
+});
+// esto se ejecuta después de cada test
+test.afterEach(async ({ page }) => {});
+
 test("test", async ({ page }) => {
   await page.goto("http://uitestingplayground.com/");
   await page.getByRole("link", { name: "Resources" }).click();
