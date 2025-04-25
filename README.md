@@ -1,108 +1,144 @@
 # Guía de Playwright
 
-Este proyecto contiene pruebas automatizadas utilizando Playwright.
+## 📖 Introducción
 
-## Comandos Principales
+Este proyecto contiene pruebas automatizadas utilizando Playwright, un framework moderno para automatización de pruebas end-to-end.
 
-### Grabación de Pruebas
+## 🚀 Inicio Rápido
+
+### Prerequisitos
+
+- Node.js instalado
+- npm o yarn como gestor de paquetes
+
+### Instalación
+
+```bash
+npm install
+```
+
+## 🛠️ Comandos Principales
+
+### Grabación de Pruebas Automáticas
 
 ```bash
 npx playwright codegen
 ```
 
-Este comando inicia un navegador que graba tus interacciones con una página web y genera automáticamente el código de prueba correspondiente.
+Este comando abre un navegador instrumentado que:
+
+- Graba tus interacciones con la página web
+- Genera automáticamente el código de prueba correspondiente
+- Permite identificar selectores fácilmente
 
 ### Ejecución de Pruebas
 
-```bash
-npx playwright test
-```
+| Comando | Descripción |
+|---------|-------------|
+| `npx playwright test` | Ejecuta todas las pruebas en modo headless |
+| `npx playwright test --headed` | Ejecuta pruebas con navegador visible |
+| `npx playwright test [archivo]` | Ejecuta un archivo específico |
+| `npx playwright test --project=chromium` | Ejecuta pruebas solo en Chromium |
 
-Este comando ejecuta todas las pruebas definidas en el proyecto.
-
-### Ejecución de pruebas con navegador visible
-
-```bash
-npx playwright test --headed
-```
-
-Este comando ejecuta las pruebas con el navegador visible, útil para depuración.
-
-### Ejecución de pruebas específicas
-
-```bash
-npx playwright test uitesting --headed
-```
-
-Ejecuta un archivo de prueba específico (en este caso 'uitesting') con el navegador visible.
-
-### Visualización de Reportes
+### Reportes y Resultados
 
 ```bash
 npx playwright show-report
 ```
 
-Abre el reporte HTML con los resultados de las pruebas ejecutadas.
+Genera y abre un reporte HTML detallado con:
 
-## Modo Debug
+- Resultados de las pruebas
+- Capturas de pantalla
+- Trazas de ejecución
+- Logs detallados
 
-Playwright ofrece potentes herramientas de depuración que te ayudarán a identificar y resolver problemas en tus pruebas.
+## 🐛 Herramientas de Depuración
 
-### Iniciar Modo Debug
-
-```bash
-npx playwright test assert --debug
-```
-
-Este comando inicia el modo debug para el archivo de prueba 'assert'. El navegador se abrirá y la ejecución se pausará al inicio de la prueba.
-
-### Debug con Console
+### Modo Debug Interactivo
 
 ```bash
-PWDEBUG=console npx playwright test assert
+npx playwright test [archivo] --debug
 ```
 
-Este comando habilita el modo debug con acceso a la consola de desarrollo, permitiendo una interacción más detallada con la página.
+Características:
 
-### Comandos Útiles en la Consola de Debug
+- Pausa la ejecución al inicio de la prueba
+- Permite navegación paso a paso
+- Muestra el estado de la página en cada paso
+- Proporciona herramientas de inspección
 
-En el modo debug, tienes acceso al objeto `playwright` en la consola del navegador con las siguientes funciones útiles:
+### Modo Debug con Consola
 
-- `playwright.$('selector')` - Encuentra y retorna el primer elemento que coincida con el selector (similar a document.querySelector)
-- `playwright.$$('selector')` - Encuentra y retorna todos los elementos que coincidan con el selector (similar a document.querySelectorAll)
-- `playwright.inspect('selector')` - Activa el inspector de elementos y resalta el elemento seleccionado
-- `playwright.selector($0)` - Genera un selector óptimo para el elemento actualmente seleccionado en el inspector
+```bash
+PWDEBUG=console npx playwright test [archivo]
+```
 
-### Tips para el Modo Debug
+### Herramientas de Debug Disponibles
 
-- Usa `await` con los comandos de playwright en la consola (ej: `await playwright.$('input')`)
-- Puedes alternar entre el modo paso a paso y la ejecución continua
-- El inspector de elementos te permite identificar selectores óptimos para tus pruebas
-- Presiona 'Resume' (F8) para continuar la ejecución después de un punto de interrupción
+| Comando | Descripción |
+|---------|-------------|
+| `playwright.$('selector')` | Busca el primer elemento que coincida |
+| `playwright.$$('selector')` | Busca todos los elementos coincidentes |
+| `playwright.inspect('selector')` | Activa el inspector de elementos |
+| `playwright.selector($0)` | Genera selector óptimo del elemento seleccionado |
 
-## Estructura del Proyecto
+### Logging de API
 
-- `tests/` - Directorio que contiene las pruebas principales
-  - `example.spec.ts` - Pruebas básicas de navegación en Platzi
-  - `uitesting.spec.ts` - Pruebas de UI en uitestingplayground.com
-- `tests-examples/` - Directorio con ejemplos de pruebas
-  - `demo-todo-app.spec.ts` - Pruebas completas de una aplicación TODO
-- `playwright-report/` - Directorio donde se generan los reportes de las pruebas
-- `test-results/` - Directorio que almacena los resultados de las pruebas
+```bash
+set DEBUG=pw:api && npx playwright test
+```
 
-## Casos de Prueba Implementados
+Muestra logs detallados de las interacciones con la API.
+
+## 📁 Estructura del Proyecto
+
+```
+├── tests/                     # Pruebas principales
+│   ├── assert.spec.ts        # Pruebas de aserciones
+│   ├── ecommerce.spec.ts     # Pruebas de e-commerce
+│   ├── example.spec.ts       # Ejemplos básicos
+│   └── uitesting.spec.ts     # Pruebas de UI
+├── tests-examples/           # Ejemplos adicionales
+├── playwright-report/        # Reportes generados
+└── test-results/            # Resultados de ejecución
+```
+
+## 📋 Casos de Prueba
 
 ### UI Testing Playground
 
-- Interacción con elementos dinámicos
-- Manejo de Shadow DOM
-- Pruebas en capas ocultas
-- Navegación entre páginas
+- ✅ Interacción con elementos dinámicos
+- ✅ Manejo de Shadow DOM
+- ✅ Pruebas en capas ocultas
+- ✅ Navegación entre páginas
+
+### E-commerce
+
+- 🛒 Flujo de compra
+- 🔍 Búsqueda de productos
+- 🛍️ Carrito de compras
+- 💳 Proceso de pago
 
 ### Demo TODO App
 
-- Creación y edición de tareas
-- Marcado de tareas como completadas
-- Persistencia de datos
-- Filtrado de tareas
-- Validación de contadores
+- ✏️ Gestión de tareas
+- ✅ Estados de completado
+- 🔄 Persistencia de datos
+- 🏷️ Filtrado y etiquetado
+
+## 💡 Mejores Prácticas
+
+1. Usar selectores robustos y mantenibles
+2. Implementar esperas explícitas cuando sea necesario
+3. Mantener las pruebas independientes
+4. Documentar casos de prueba complejos
+5. Utilizar datos de prueba consistentes
+
+## 🤝 Contribución
+
+1. Fork el repositorio
+2. Crea una rama para tu función (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
