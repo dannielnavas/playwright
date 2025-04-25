@@ -11,6 +11,8 @@ test.afterEach(async ({ page }) => {});
 
 // test.only("test", async ({ page }) => { }); se utiliza para ejecutar solo un test only
 
+// para leer atributos se usa await expect(locator).toHaveAttribute("atributo", "valor")
+
 test("test", async ({ page }) => {
   await page.goto("http://uitestingplayground.com/");
   await page.getByRole("link", { name: "Resources" }).click();
