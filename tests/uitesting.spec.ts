@@ -9,6 +9,8 @@ test.beforeEach(async ({ page }) => {
 // esto se ejecuta después de cada test
 test.afterEach(async ({ page }) => {});
 
+// test.only("test", async ({ page }) => { }); se utiliza para ejecutar solo un test only
+
 test("test", async ({ page }) => {
   await page.goto("http://uitestingplayground.com/");
   await page.getByRole("link", { name: "Resources" }).click();
